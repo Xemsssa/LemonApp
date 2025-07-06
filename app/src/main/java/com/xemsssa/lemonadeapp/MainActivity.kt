@@ -44,6 +44,7 @@ class MainActivity : ComponentActivity() {
 private fun LemonTree() {
 
     var screen by remember { mutableStateOf(1) }
+    var squize by remember { mutableStateOf(0) }
     Surface(
         color = MaterialTheme.colorScheme.background
     ) {
@@ -57,6 +58,7 @@ private fun LemonTree() {
                     descr = R.string.tap_lemon_tree,
                     onClick = {
                         screen = 2
+                        squize = (2..4).random()
                     }
                 )
             }
@@ -67,7 +69,32 @@ private fun LemonTree() {
                     image = R.drawable.lemon_squeeze,
                     descr = R.string.lemon,
                     onClick = {
-                        screen = 3
+                        squize--
+                        if (squize == 0){
+                            screen = 3
+                        }
+                    }
+                )
+            }
+
+            3 -> {
+                ShowLemonTreeAndText(
+                    text = R.string.drink,
+                    image = R.drawable.lemon_drink,
+                    descr = R.string.glass_of_lemonade,
+                    onClick = {
+                        screen = 4
+                    }
+                )
+            }
+
+            4 -> {
+                ShowLemonTreeAndText(
+                    text = R.string.empty,
+                    image = R.drawable.lemon_restart,
+                    descr = R.string.empty_glasee,
+                    onClick = {
+                        screen = 1
                     }
                 )
             }
